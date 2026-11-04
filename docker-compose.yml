@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  # 2. Container Divisi Keuangan
+  container_keuangan:
+    build: .
+    container_name: db-keuangan
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_KEUANGAN}
+      MYSQL_USER: ${USER_KEUANGAN}
+      MYSQL_PASSWORD: ${PASS_KEUANGAN}
+    ports:
+      - "${PORT_KEUANGAN}:3306"
+    volumes:
+      - vol_keuangan:/var/lib/mysql
+      - ./sql_init/init-keuangan.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - ZIS-network
+
+volumes:
+  vol_keuangan:
+
+networks:
+  ZIS-network: 
+    driver: bridge
