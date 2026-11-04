@@ -1,26 +1,26 @@
 version: '3.8'
 
 services:
-  # 3. Container Divisi Pendistribusian
-  container_pendistribusian:
+  # 1. Container Divisi Penghimpunan
+  container_penghimpunan:
     build: .
-    container_name: db_pendistribusian
+    container_name: db_penghimpunan
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${ROOT_PASSWORD}
-      MYSQL_DATABASE: ${DB_PENDISTRIBUSIAN}
-      MYSQL_USER: ${USER_PENDISTRIBUSIAN}
-      MYSQL_PASSWORD: ${PASS_PENDISTRIBUSIAN}
+      MYSQL_DATABASE: ${DB_PENGHIMPUNAN}
+      MYSQL_USER: ${USER_PENGHIMPUNAN}
+      MYSQL_PASSWORD: ${PASS_PENGHIMPUNAN}
     ports:
-      - "${PORT_PENDISTRIBUSIAN}:3306"
+      - "${PORT_PENGHIMPUNAN}:3306"
     volumes:
-      - vol_pendistribusian:/var/lib/mysql
-      - ./sql_init/init-pendistribusian.sql:/docker-entrypoint-initdb.d/init.sql
+      - vol_penghimpunan:/var/lib/mysql
+      - ./sql_init/init-penghimpunan.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - ZIS-network
 
 volumes:
-  vol_pendistribusian:
+  vol_penghimpunan:
 
 networks:
   ZIS-network:
