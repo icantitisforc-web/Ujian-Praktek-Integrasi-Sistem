@@ -1,27 +1,27 @@
 version: '3.8'
 
 services:
-  # 2. Container Divisi Keuangan
-  container_keuangan:
+  # 3. Container Divisi Pendistribusian
+  container_pendistribusian:
     build: .
-    container_name: db-keuangan
+    container_name: db_pendistribusian
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${ROOT_PASSWORD}
-      MYSQL_DATABASE: ${DB_KEUANGAN}
-      MYSQL_USER: ${USER_KEUANGAN}
-      MYSQL_PASSWORD: ${PASS_KEUANGAN}
+      MYSQL_DATABASE: ${DB_PENDISTRIBUSIAN}
+      MYSQL_USER: ${USER_PENDISTRIBUSIAN}
+      MYSQL_PASSWORD: ${PASS_PENDISTRIBUSIAN}
     ports:
-      - "${PORT_KEUANGAN}:3306"
+      - "${PORT_PENDISTRIBUSIAN}:3306"
     volumes:
-      - vol_keuangan:/var/lib/mysql
-      - ./sql_init/init-keuangan.sql:/docker-entrypoint-initdb.d/init.sql
+      - vol_pendistribusian:/var/lib/mysql
+      - ./sql_init/init-pendistribusian.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - ZIS-network
 
 volumes:
-  vol_keuangan:
+  vol_pendistribusian:
 
 networks:
-  ZIS-network: 
+  ZIS-network:
     driver: bridge
